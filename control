@@ -1,17 +1,22 @@
 Package: com.huhansibuxin.disablebgkeepalive
 Name: DisableBgKeepalive
 Depends: mobilesubstrate, ellekit
-Version: 1.1.0
+Version: 1.2.0
 Architecture: iphoneos-arm64
-Description: 禁用后台保活 (Disable Background Keepalive). Hooks every iOS runtime
- channel that an app uses to stay alive in the background: beginBackgroundTask*,
- legacy VoIP setKeepAliveTimeout:, BGTaskScheduler, PKPushRegistry/VoIP,
+Description: 禁用后台保活 (Disable Background Keepalive). Two jobs in one dylib.
+ (1) Kill every iOS 16 runtime keepalive channel: beginBackgroundTask*, legacy
+ VoIP setKeepAliveTimeout:, BGTaskScheduler, PKPushRegistry/VoIP,
  CLLocationManager, background fetch, CBCentralManager/CBPeripheralManager
- restore, NSURLSession background, HKHealthStore delivery, and silent push
- application:didReceiveRemoteNotification:fetchCompletionHandler:. All are
+ restore, NSURLSession background, HKHealthStore delivery, silent push. All are
  refused/short-circuited whenever the app is not in the foreground, so the
- system suspends it immediately after leaving. For static UIBackgroundModes,
- run the bundled strip_bg_modes.sh against the target bundle id.
+ system suspends it immediately after leaving (zero background CPU).
+ (2) Auto-exit on any non-user-initiated launch: if the app is started or woken
+ in the background by the system (location change, bluetooth change, background
+ fetch, background URLSession, silent/remote push), it exits immediately. Only
+ launches you start yourself (icon tap / notification tap) are allowed through.
+ All waiting and killing happens on a background queue; the main thread is never
+ blocked. For static UIBackgroundModes, run strip_bg_modes.sh on the target
+ bundle id.
 Maintainer: huhansibuxin
 Author: huhansibuxin
 Section: Tweaks

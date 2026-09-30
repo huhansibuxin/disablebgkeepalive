@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys, os, io, lzma, tarfile, re
 
-DEB = sys.argv[1] if len(sys.argv) > 1 else r"_artifacts/roothide/com.huhansibuxin.disablebgkeepalive_1.1.0-1_iphoneos-arm64e.deb"
+DEB = sys.argv[1] if len(sys.argv) > 1 else r"_artifacts/roothide/com.huhansibuxin.disablebgkeepalive_1.2.0-1_iphoneos-arm64e.deb"
 
 # --- 1. parse ar archive (deb) ---
 with open(DEB, "rb") as f:
@@ -55,7 +55,7 @@ print("\n== DEBIAN/control ==")
 print(control_raw)
 assert "Package: com.huhansibuxin.disablebgkeepalive" in control_raw, "PACKAGE NAME MISMATCH"
 assert "Name: DisableBgKeepalive" in control_raw, "NAME MISMATCH"
-assert "Version: 1.0.1" in control_raw, "VERSION MISMATCH"
+assert "Version: 1.2.0" in control_raw, "VERSION MISMATCH"
 print("control OK: package/name/version match")
 
 # --- 4. dylib method-name string checks ---
@@ -73,6 +73,14 @@ methods = [
     b"backgroundSessionConfigurationWithIdentifier:",
     b"enableBackgroundDeliveryForType:frequency:withCompletion:",
     b"didReceiveRemoteNotification:fetchCompletionHandler:",
+    # [L] 冷启动判定 / [M] 看门狗
+    b"didFinishLaunchingWithOptions:",
+    b"UIApplicationLaunchOptionsLocationKey",
+    b"UIApplicationLaunchOptionsBluetoothCentralsKey",
+    b"UIApplicationLaunchOptionsBluetoothPeripheralsKey",
+    b"UIApplicationLaunchOptionsBackgroundFetchKey",
+    b"UIApplicationLaunchOptionsBackgroundSessionIdentifierKey",
+    b"UIApplicationDidEnterBackgroundNotification",
 ]
 print("\n== dylib hook method-name probe ==")
 missing = []
