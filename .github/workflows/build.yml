@@ -1,4 +1,4 @@
-name: Build UniversalNoBgKeepalive
+name: Build DisableBgKeepalive
 
 on:
   push:
@@ -57,5 +57,5 @@ jobs:
       - name: Upload deb
         uses: actions/upload-artifact@v4
         with:
-          name: UniversalNoBgKeepalive-${{ matrix.variant }}
+          name: DisableBgKeepalive-${{ matrix.variant }}
           path: packages/*.deb

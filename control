@@ -1,13 +1,15 @@
-Package: com.huhansibuxin.universalnobgkeepalive
-Name: UniversalNoBgKeepalive
+Package: com.huhansibuxin.disablebgkeepalive
+Name: DisableBgKeepalive
 Depends: mobilesubstrate, ellekit
-Version: 1.0.1
+Version: 1.1.0
 Architecture: iphoneos-arm64
-Description: Universal no-background-keepalive. Hooks every iOS runtime channel
- that an app uses to stay alive in the background (beginBackgroundTask,
- BGTaskScheduler, PKPushRegistry/VoIP, CLLocationManager, background fetch,
- CBCentralManager restore, NSURLSession background, HKHealthStore delivery) and
- refuses/short-circuits them whenever the app is not in the foreground, so the
+Description: 禁用后台保活 (Disable Background Keepalive). Hooks every iOS runtime
+ channel that an app uses to stay alive in the background: beginBackgroundTask*,
+ legacy VoIP setKeepAliveTimeout:, BGTaskScheduler, PKPushRegistry/VoIP,
+ CLLocationManager, background fetch, CBCentralManager/CBPeripheralManager
+ restore, NSURLSession background, HKHealthStore delivery, and silent push
+ application:didReceiveRemoteNotification:fetchCompletionHandler:. All are
+ refused/short-circuited whenever the app is not in the foreground, so the
  system suspends it immediately after leaving. For static UIBackgroundModes,
  run the bundled strip_bg_modes.sh against the target bundle id.
 Maintainer: huhansibuxin

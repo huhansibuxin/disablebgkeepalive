@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ============================================================================
 # strip_bg_modes.sh —— 斩后台「plist 一半」：删掉目标 App 的全部后台模式 + 后台任务
-# 白名单 + WiFi 常连。与 NoBgCPU.dylib（运行时一半）配合 = iOS 16 任意 App 彻底无后台。
+# 白名单 + WiFi 常连。与 DisableBgKeepalive.dylib（运行时一半）配合 = iOS 16 任意 App 彻底无后台。
 #
 # 用法:  ./strip_bg_modes.sh [--dry-run] <bundle-id> [ssh-host]
 # 例:    ./strip_bg_modes.sh --dry-run app.swiftgram.ios      # 只预览，不改
