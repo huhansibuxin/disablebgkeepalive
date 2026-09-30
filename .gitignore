@@ -1,0 +1,10 @@
+# Theos 构建产物
+.theos/
+packages/
+obj/
+build/
+
+# 本地临时
+*.orig
+*.log
+.DS_Store

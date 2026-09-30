@@ -1,0 +1,12 @@
+Package: com.huhansibuxin.swiftgramnobgcpu
+Name: SwiftgramNoBgCPU
+Depends: mobilesubstrate, ellekit
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Description: Kill Swiftgram background CPU. Hooks UIApplication beginBackgroundTask
+ and returns UIBackgroundTaskInvalid whenever the app is not in the foreground,
+ so the system suspends it immediately after leaving the app instead of letting
+ Postbox TimeBasedCleanupScan burn a core in the background task window.
+Maintainer: huhansibuxin
+Author: huhansibuxin
+Section: Tweaks
