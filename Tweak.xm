@@ -146,10 +146,10 @@ static BOOL nb_isForeground(void) {
 // ---------------------------------------------------------------------------
 // [G] 后台传输：返回默认（非后台）配置，系统守护不再代跑后台下载
 // ---------------------------------------------------------------------------
-%hook URLSessionConfiguration
+%hook NSURLSessionConfiguration
 
 + (instancetype)backgroundSessionConfigurationWithIdentifier:(NSString *)identifier {
-    return [URLSessionConfiguration defaultSessionConfiguration];
+    return [NSURLSessionConfiguration defaultSessionConfiguration];
 }
 
 %end
@@ -163,7 +163,6 @@ static BOOL nb_isForeground(void) {
                                frequency:(NSInteger)frequency
                           withCompletion:(void (^)(BOOL, NSError *))completion {
     if (completion) {
-        *completion = NO;
         NSError *e = [NSError errorWithDomain:@"NoBgCPU"
                                          code:2
                                      userInfo:@{NSLocalizedDescriptionKey: @"health background delivery disabled"}];
