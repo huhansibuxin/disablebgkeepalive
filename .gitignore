@@ -8,3 +8,4 @@ build/
 *.orig
 *.log
 .DS_Store
+_artifacts/

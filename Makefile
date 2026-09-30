@@ -15,11 +15,11 @@ OPTFLAG = -O2
 
 export _THEOS_PLATFORM_DPKG_DEB_COMPRESSION = gzip
 
-TWEAK_NAME := SwiftgramNoBgCPU
+TWEAK_NAME := UniversalNoBgKeepalive
 
-SwiftgramNoBgCPU_FILES := Tweak.xm
-SwiftgramNoBgCPU_CFLAGS := -fobjc-arc -w
-SwiftgramNoBgCPU_FRAMEWORKS := UIKit Foundation
+UniversalNoBgKeepalive_FILES := Tweak.xm
+UniversalNoBgKeepalive_CFLAGS := -fobjc-arc -w
+UniversalNoBgKeepalive_FRAMEWORKS := UIKit Foundation
 
 include $(THEOS)/makefiles/common.mk
 include $(THEOS_MAKE_PATH)/tweak.mk

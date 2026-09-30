@@ -1,4 +1,4 @@
-name: Build SwiftgramNoBgCPU
+name: Build UniversalNoBgKeepalive
 
 on:
   push:
@@ -57,5 +57,5 @@ jobs:
       - name: Upload deb
         uses: actions/upload-artifact@v4
         with:
-          name: SwiftgramNoBgCPU-${{ matrix.variant }}
+          name: UniversalNoBgKeepalive-${{ matrix.variant }}
           path: packages/*.deb

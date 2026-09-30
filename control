@@ -1,12 +1,15 @@
-Package: com.huhansibuxin.swiftgramnobgcpu
-Name: SwiftgramNoBgCPU
+Package: com.huhansibuxin.universalnobgkeepalive
+Name: UniversalNoBgKeepalive
 Depends: mobilesubstrate, ellekit
-Version: 1.0.0
+Version: 1.0.1
 Architecture: iphoneos-arm64
-Description: Kill Swiftgram background CPU. Hooks UIApplication beginBackgroundTask
- and returns UIBackgroundTaskInvalid whenever the app is not in the foreground,
- so the system suspends it immediately after leaving the app instead of letting
- Postbox TimeBasedCleanupScan burn a core in the background task window.
+Description: Universal no-background-keepalive. Hooks every iOS runtime channel
+ that an app uses to stay alive in the background (beginBackgroundTask,
+ BGTaskScheduler, PKPushRegistry/VoIP, CLLocationManager, background fetch,
+ CBCentralManager restore, NSURLSession background, HKHealthStore delivery) and
+ refuses/short-circuits them whenever the app is not in the foreground, so the
+ system suspends it immediately after leaving. For static UIBackgroundModes,
+ run the bundled strip_bg_modes.sh against the target bundle id.
 Maintainer: huhansibuxin
 Author: huhansibuxin
 Section: Tweaks
